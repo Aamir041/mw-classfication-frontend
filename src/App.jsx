@@ -18,7 +18,7 @@ import ReactMarkdown from "react-markdown";
 
 function App() {
   const [question, setQuestion] = useState("");
-  const [response, setResponse] = useState("");
+  const [response, setResponse] = useState([]);
   const [imageResponse, setImageResponse] = useState([]);
 
   const [loading, setLoading] = useState(false);
@@ -115,7 +115,10 @@ function App() {
 
       const result = await chat.sendMessage(questions);
       console.log(result.response);
-      setResponse(result.response?.candidates[0]?.content?.parts[0]?.text);
+      setResponse([
+        ...response,
+        result.response?.candidates[0]?.content?.parts[0]?.text,
+      ]);
     } catch (error) {
       console.error("Error:", error.message);
     }
@@ -141,11 +144,10 @@ function App() {
           ) : response.length == 0 ? (
             <div>No Response Yet</div>
           ) : (
-            <ReactMarkdown>{response}</ReactMarkdown>
+            response?.map((res) => {
+              return <ReactMarkdown>{res}</ReactMarkdown>;
+            })
           )}
-        </div>
-
-        <div>
           {imageResponse?.length == 0 ? (
             <div></div>
           ) : (
@@ -164,12 +166,20 @@ function App() {
         <div className="typing-container">
           <div className="typing-content">
             <div className="typing-textarea">
-              <textarea
-                id="chat-input"
-                placeholder="Enter a prompt here"
-                onChange={(e) => setQuestion(e.target.value)}
-              ></textarea>
-              
+              <form
+                style={{ all: "unset", width: "100%" }}
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  console.log("ok");
+                  getGeminiResponse(question);
+                }}
+              >
+                <input
+                  id="chat-input"
+                  placeholder="Enter a prompt here"
+                  onChange={(e) => setQuestion(e.target.value)}
+                />
+              </form>
             </div>
 
             <div className="typing-controls">
@@ -198,7 +208,6 @@ function App() {
       </div>
 
       {/* <input ref={fileInputRef} type="file" onChange={handleFileUpload} /> */}
-
     </div>
   );
 }
