@@ -19,6 +19,7 @@ import ReactMarkdown from "react-markdown";
 function App() {
   const [question, setQuestion] = useState("");
   const [response, setResponse] = useState("");
+  const [imageResponse, setImageResponse] = useState([]);
 
   const [loading, setLoading] = useState(false);
 
@@ -26,6 +27,8 @@ function App() {
   const API_KEY = "AIzaSyDjPCJ-6gib3fD50eB2tFocB-GyVCeioG8";
 
   const [base64String, setBase64String] = useState("");
+  const [responseArray, setResponseArray] = useState([]);
+
   const fileInputRef = useRef(null);
 
   const getPredictResponse = async () => {
@@ -42,7 +45,8 @@ function App() {
         },
       });
 
-      console.log(apiResponse.data);
+      console.log(apiResponse.data?.predictions[0]?.class);
+      setImageResponse(apiResponse.data?.predictions);
     } catch (error) {
       console.error("Error:", error.message);
     }
@@ -53,9 +57,12 @@ function App() {
 
     getPredictResponse();
 
+    // const predict_image_array = imageResponse?.predictions?.candidates;
+    console.log(imageResponse);
+
     const questions = `how are you ?`;
 
-    getGeminiResponse(questions)
+    const gemini_res = getGeminiResponse(questions);
 
     setLoading(false);
   };
@@ -127,22 +134,71 @@ function App() {
 
   return (
     <div>
-      <input ref={fileInputRef} type="file" onChange={handleFileUpload} />
+      <div>
+        <div className="chat-container">
+          {loading ? (
+            <div>Loading ...</div>
+          ) : response.length == 0 ? (
+            <div>No Response Yet</div>
+          ) : (
+            <ReactMarkdown>{response}</ReactMarkdown>
+          )}
+        </div>
 
-      <label>Question</label>
-      <input type="text" onChange={(e) => setQuestion(e.target.value)} />
+        <div>
+          {imageResponse?.length == 0 ? (
+            <div></div>
+          ) : (
+            <div>
+              {imageResponse?.map((res, idx) => {
+                return (
+                  <div key={`imageRes-${idx}`}>
+                    <div>class : {classes[res.class.toLowerCase()]}</div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
 
-      {loading ? (
-        <div>Loading ...</div>
-      ) : response.length == 0 ? (
-        <div>No Response Yet</div>
-      ) : (
-        <ReactMarkdown>{response}</ReactMarkdown>
-      )}
+        <div className="typing-container">
+          <div className="typing-content">
+            <div className="typing-textarea">
+              <textarea
+                id="chat-input"
+                placeholder="Enter a prompt here"
+                onChange={(e) => setQuestion(e.target.value)}
+              ></textarea>
+              
+            </div>
 
-      <button onClick={() => getResponse()} type="submit">
-        Submit
-      </button>
+            <div className="typing-controls">
+              <label htmlFor="file-input">
+                <span className="material-symbols-outlined">add</span>
+              </label>
+
+              <input
+                style={{ display: "none" }}
+                id="file-input"
+                ref={fileInputRef}
+                type="file"
+                onChange={handleFileUpload}
+              />
+
+              <span
+                style={{ cursor: "pointer" }}
+                className="material-symbols-outlined"
+                onClick={() => getResponse()}
+              >
+                keyboard_backspace
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* <input ref={fileInputRef} type="file" onChange={handleFileUpload} /> */}
+
     </div>
   );
 }
