@@ -27,11 +27,12 @@ function App() {
   const API_KEY = "AIzaSyDjPCJ-6gib3fD50eB2tFocB-GyVCeioG8";
 
   const [base64String, setBase64String] = useState("");
-  const [responseArray, setResponseArray] = useState([]);
 
   const fileInputRef = useRef(null);
 
   const getPredictResponse = async () => {
+
+    setResponse([])
     try {
       const apiResponse = await axios({
         method: "POST",
@@ -138,7 +139,7 @@ function App() {
   return (
     <div>
       <div>
-        <div className="chat-container">
+        <div className="chat-container" style={{color:"white"}}>
           {loading ? (
             <div>Loading ...</div>
           ) : response.length == 0 ? (
@@ -156,6 +157,7 @@ function App() {
                 return (
                   <div key={`imageRes-${idx}`}>
                     <div>class : {classes[res.class.toLowerCase()]}</div>
+                    <div>confidence: {res.confidence}</div>
                   </div>
                 );
               })}
