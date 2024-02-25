@@ -18,7 +18,7 @@ import ReactMarkdown from "react-markdown";
 
 function App() {
   const [question, setQuestion] = useState("");
-  const [response, setResponse] = useState([]);
+  const [response, setResponse] = useState("");
   const [imageResponse, setImageResponse] = useState([]);
 
   const [loading, setLoading] = useState(false);
@@ -32,7 +32,6 @@ function App() {
 
   const getPredictResponse = async () => {
 
-    setResponse([])
     try {
       const apiResponse = await axios({
         method: "POST",
@@ -116,10 +115,7 @@ function App() {
 
       const result = await chat.sendMessage(questions);
       console.log(result.response);
-      setResponse([
-        ...response,
-        result.response?.candidates[0]?.content?.parts[0]?.text,
-      ]);
+      setResponse(result.response?.candidates[0]?.content?.parts[0]?.text);
     } catch (error) {
       console.error("Error:", error.message);
     }
@@ -145,9 +141,7 @@ function App() {
           ) : response.length == 0 ? (
             <div>No Response Yet</div>
           ) : (
-            response?.map((res) => {
-              return <ReactMarkdown>{res}</ReactMarkdown>;
-            })
+            <ReactMarkdown>{response}</ReactMarkdown>
           )}
           {imageResponse?.length == 0 ? (
             <div></div>
