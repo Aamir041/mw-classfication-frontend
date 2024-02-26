@@ -15,11 +15,14 @@ const classes = {
 };
 
 import ReactMarkdown from "react-markdown";
+import Loader from "../src/components/Loader/Loader"
 
 function App() {
   const [question, setQuestion] = useState("");
   const [response, setResponse] = useState([]);
   const [imageResponse, setImageResponse] = useState([]);
+  const [image,setImage] = useState();
+  const [showLoader,setShowLoader]= useState(false)
 
   const [loading, setLoading] = useState(false);
 
@@ -54,6 +57,7 @@ function App() {
   };
 
   const getResponse = async () => {
+    
     setLoading(true);
 
     getPredictResponse();
@@ -69,6 +73,7 @@ function App() {
   };
 
   const getGeminiResponse = async (questions) => {
+    setShowLoader(() => true)
     try {
       const genAI = new GoogleGenerativeAI(API_KEY);
       const model = genAI.getGenerativeModel({ model: MODEL_NAME });
@@ -123,6 +128,7 @@ function App() {
     } catch (error) {
       console.error("Error:", error.message);
     }
+    setShowLoader(() => false)
   };
 
   const handleFileUpload = (event) => {
@@ -131,6 +137,7 @@ function App() {
 
     reader.onload = () => {
       setBase64String(btoa(reader.result));
+      setImage(reader.result)
     };
 
     reader.readAsBinaryString(file);
@@ -139,30 +146,37 @@ function App() {
   return (
     <div>
       <div>
-        <div className="chat-container" style={{color:"white"}}>
+        <div className="chat-container" style={{color:"rgba(255,255,255,0.6"}}>
+          {image && (
+            <div style={{width:"100%",textAlign:"center"}}>
+              <img src={`data:image/jpeg;base64,${btoa(image)}`} alt="Uploaded" style={{ maxWidth: '50%', maxHeight: '50%',borderRadius:"8px"}} />
+            </div>
+          )}
+          {showLoader && <Loader dimension={2}></Loader>}
+          {imageResponse?.length == 0 ? (
+              <div></div>
+            ) : (
+              <div style={{marginBottom:"2rem"}}>
+                {imageResponse?.map((res, idx) => {
+                  return (
+                    <div key={`imageRes-${idx}`}>
+                      <div style={{fontSize:"1.5rem"}}>class : <span style={{color:"#15cf81"}}>{classes[res.class.toLowerCase()]}</span></div>
+                      <div style={{fontSize:"1.5rem"}}>confidence: <span style={{color:"#15cf81"}}>{res.confidence.toFixed(4)}</span></div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           {loading ? (
             <div>Loading ...</div>
           ) : response.length == 0 ? (
-            <div>No Response Yet</div>
+            <div>GET RESPONSE</div>
           ) : (
             response?.map((res) => {
               return <ReactMarkdown>{res}</ReactMarkdown>;
             })
           )}
-          {imageResponse?.length == 0 ? (
-            <div></div>
-          ) : (
-            <div>
-              {imageResponse?.map((res, idx) => {
-                return (
-                  <div key={`imageRes-${idx}`}>
-                    <div>class : {classes[res.class.toLowerCase()]}</div>
-                    <div>confidence: {res.confidence}</div>
-                  </div>
-                );
-              })}
-            </div>
-          )}
+          
         </div>
 
         <div className="typing-container">
