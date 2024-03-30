@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import "./App.css";
+// import "./App.css";
 import {
   GoogleGenerativeAI,
   HarmCategory,
@@ -15,14 +15,14 @@ const classes = {
 };
 
 import ReactMarkdown from "react-markdown";
-import Loader from "../src/components/Loader/Loader"
+import Loader from "../src/components/Loader/Loader";
 
 function App() {
   const [question, setQuestion] = useState("");
-  const [response, setResponse] = useState([]);
+  const [response, setResponse] = useState();
   const [imageResponse, setImageResponse] = useState([]);
-  const [image,setImage] = useState();
-  const [showLoader,setShowLoader]= useState(false)
+  const [image, setImage] = useState();
+  const [showLoader, setShowLoader] = useState(false);
 
   const [loading, setLoading] = useState(false);
 
@@ -34,8 +34,7 @@ function App() {
   const fileInputRef = useRef(null);
 
   const getPredictResponse = async () => {
-
-    setResponse([])
+    setResponse([]);
     try {
       const apiResponse = await axios({
         method: "POST",
@@ -57,7 +56,6 @@ function App() {
   };
 
   const getResponse = async () => {
-    
     setLoading(true);
 
     getPredictResponse();
@@ -65,15 +63,15 @@ function App() {
     // const predict_image_array = imageResponse?.predictions?.candidates;
     console.log(imageResponse);
 
-    const questions = `how are you ?`;
-
+    const questions =
+      "you are a medical waste detection bot introduce yourself in 30 words and also say that user can ask you any question realted to medical waste photo being uploaded";
     const gemini_res = getGeminiResponse(questions);
 
     setLoading(false);
   };
 
   const getGeminiResponse = async (questions) => {
-    setShowLoader(() => true)
+    setShowLoader(() => true);
     try {
       const genAI = new GoogleGenerativeAI(API_KEY);
       const model = genAI.getGenerativeModel({ model: MODEL_NAME });
@@ -87,20 +85,20 @@ function App() {
 
       const safetySettings = [
         {
-          category: HarmCategory.HARM_CATEGORY_HARASSMENT,
-          threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
-        },
-        {
-          category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
-          threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+          category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
+          threshold: HarmBlockThreshold.BLOCK_NONE,
         },
         {
           category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
-          threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+          threshold: HarmBlockThreshold.BLOCK_NONE,
         },
         {
-          category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
-          threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+          category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
+          threshold: HarmBlockThreshold.BLOCK_NONE,
+        },
+        {
+          category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
+          threshold: HarmBlockThreshold.BLOCK_NONE,
         },
       ];
 
@@ -121,14 +119,11 @@ function App() {
 
       const result = await chat.sendMessage(questions);
       console.log(result.response);
-      setResponse([
-        ...response,
-        result.response?.candidates[0]?.content?.parts[0]?.text,
-      ]);
+      setResponse(result.response?.candidates[0]?.content?.parts[0]?.text);
     } catch (error) {
       console.error("Error:", error.message);
     }
-    setShowLoader(() => false)
+    setShowLoader(() => false);
   };
 
   const handleFileUpload = (event) => {
@@ -137,7 +132,7 @@ function App() {
 
     reader.onload = () => {
       setBase64String(btoa(reader.result));
-      setImage(reader.result)
+      setImage(reader.result);
     };
 
     reader.readAsBinaryString(file);
@@ -146,37 +141,62 @@ function App() {
   return (
     <div>
       <div>
-        <div className="chat-container" style={{color:"rgba(255,255,255,0.6"}}>
+        <div
+          className="chat-container"
+          style={{ color: "rgba(255,255,255,0.6" }}
+        >
           {image && (
-            <div style={{width:"100%",textAlign:"center"}}>
-              <img src={`data:image/jpeg;base64,${btoa(image)}`} alt="Uploaded" style={{ maxWidth: '50%', maxHeight: '50%',borderRadius:"8px"}} />
+            <div
+              style={{
+                width: "60%",
+                textAlign: "center",
+                marginLeft: "auto",
+                marginRight: "auto",
+              }}
+            >
+              <img
+                src={`data:image/jpeg;base64,${btoa(image)}`}
+                alt="Uploaded"
+                style={{
+                  maxWidth: "50%",
+                  maxHeight: "50%",
+                  borderRadius: "8px",
+                }}
+              />
             </div>
           )}
           {showLoader && <Loader dimension={2}></Loader>}
           {imageResponse?.length == 0 ? (
-              <div></div>
-            ) : (
-              <div style={{marginBottom:"2rem"}}>
-                {imageResponse?.map((res, idx) => {
-                  return (
-                    <div key={`imageRes-${idx}`}>
-                      <div style={{fontSize:"1.5rem"}}>class : <span style={{color:"#15cf81"}}>{classes[res.class.toLowerCase()]}</span></div>
-                      <div style={{fontSize:"1.5rem"}}>confidence: <span style={{color:"#15cf81"}}>{res.confidence.toFixed(4)}</span></div>
+            <div></div>
+          ) : (
+            <div style={{ marginBottom: "2rem" }}>
+              {imageResponse?.map((res, idx) => {
+                return (
+                  <div key={`imageRes-${idx}`}>
+                    <div style={{ fontSize: "1.5rem" }}>
+                      class :{" "}
+                      <span style={{ color: "#15cf81" }}>
+                        {classes[res.class.toLowerCase()]}
+                      </span>
                     </div>
-                  );
-                })}
-              </div>
-            )}
+                    <div style={{ fontSize: "1.5rem" }}>
+                      confidence:{" "}
+                      <span style={{ color: "#15cf81" }}>
+                        {res.confidence.toFixed(4)}
+                      </span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
           {loading ? (
             <div>Loading ...</div>
-          ) : response.length == 0 ? (
+          ) : response?.length == 0 ? (
             <div>GET RESPONSE</div>
           ) : (
-            response?.map((res) => {
-              return <ReactMarkdown>{res}</ReactMarkdown>;
-            })
+            <ReactMarkdown>{response}</ReactMarkdown>
           )}
-          
         </div>
 
         <div className="typing-container">
