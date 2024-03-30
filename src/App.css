@@ -28,13 +28,19 @@
 }
 body {
   background: var(--outgoing-chat-bg);
+  margin-top:2rem;
 }
 
 /* Chats container styling */
 .chat-container {
-  overflow-y: auto;
-  max-height: 100vh;
-  padding-bottom: 150px;
+  border-radius: 5px;
+  overflow-y: scroll;
+  max-height: 82vh;
+  width: 55%;
+  margin:2rem auto;
+  background:rgba(255, 255, 255, 0.1);
+  padding:2rem;
+ 
 }
 :where(.chat-container, textarea)::-webkit-scrollbar {
   width: 6px;
@@ -257,4 +263,33 @@ span.material-symbols-rounded {
   span.material-symbols-rounded {
     font-size: 1.25rem!important;
   }
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  animation: fadeIn 1s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slideIn {
+  animation: slideIn 0.5s ease-out;
 }
