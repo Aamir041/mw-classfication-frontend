@@ -10,6 +10,41 @@
 }
 
 .sidenavbar-nav{
-    background-color: rgba(255, 255, 255, 0.1);
     width: 15%;
+    border-right: 1px solid gray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidenavbar-title{
+    width: 100%;
+    border-bottom: solid 1px white;
+    padding:0.5rem 1rem ;
+}
+
+.sidenavbar-title h3{
+    width: 100%;
+    border: 1px solid;
+    padding: 0.25rem 5rem;
+    border-radius: 8px;
+    font-style: italic;
+    text-align: center;
+}
+
+.sidenavbar-menu{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0.25rem 0.5rem ;
+    margin-top: 1rem;
+}
+
+.sidenavbar-menu a{
+    all:unset;
+    padding: 0.25rem 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid white;
+    border-radius: 5px;
+    cursor: pointer;
 }
