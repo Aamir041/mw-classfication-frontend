@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-const backendUrl = "http://localhost:8080/classify/upload";
+const backendUrl = "http://localhost:8080/classify/image";
 
 const FormApp = () => {
     const [selectedImage, setSelectedImage] = useState(null)
@@ -11,7 +11,6 @@ const FormApp = () => {
     }
 
     const uploadImage = async () => {
-        console.log("uploaded")
         const formData = new FormData(); 
         formData.append("file",selectedImage);
         const sendImageRes = await axios.post(backendUrl,formData);

@@ -1,0 +1,223 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+:root {
+    --text-color: #FFFFFF;
+    --icon-color: #ACACBE;
+    --icon-hover-bg: #5b5e71;
+    --placeholder-color: #dcdcdc;
+    --outgoing-chat-bg: #343541;
+    --incoming-chat-bg: #444654;
+    --outgoing-chat-border: #343541;
+    --incoming-chat-border: #444654;
+}
+
+.gemini-app {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 2rem 0rem;
+}
+.chat-container {
+    border-radius: 5px;
+    overflow-y: scroll;
+    height: 90%;
+    width: 90%;
+    margin: 0rem auto;
+    color: white;
+    /* background-color: red; */
+    background: rgba(255, 255, 255,0.1);
+    padding: 2rem;
+
+}
+
+:where(.chat-container, textarea)::-webkit-scrollbar {
+    width: 0px;
+}
+
+:where(.chat-container, textarea)::-webkit-scrollbar-track {
+    background: var(--incoming-chat-bg);
+    border-radius: 25px;
+}
+
+:where(.chat-container, textarea)::-webkit-scrollbar-thumb {
+    background: var(--icon-color);
+    border-radius: 25px;
+}
+
+
+
+span.material-symbols-rounded {
+    user-select: none;
+    cursor: pointer;
+}
+
+/* Typing container styling */
+.typing-container {
+    background-color: rgba(255, 255, 255, 0.05);
+    /* background-color: green; */
+    position:absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    padding: 0.75rem 0rem;
+    justify-content: center;
+}
+
+.typing-container .typing-content {
+    /* background-color: pink; */
+    display: flex;
+    justify-content: center;
+    width: 100%;    
+}
+
+.typing-container .typing-textarea {
+    width: 80%;
+    display: flex;
+    position: relative;
+}
+
+.typing-textarea input {
+    resize: none;
+    height: 55px;
+    width: 100%;
+    border: none;
+    padding: 15px 45px 15px 20px;
+    color: var(--text-color);
+    font-size: 1rem;
+    border-radius: 4px;
+    max-height: 250px;
+    overflow-y: auto;
+    background: rgba(255, 255, 255,0.1);
+}
+
+.typing-textarea input:focus{
+    outline: none;
+}
+
+.typing-textarea input::placeholder {
+    color: var(--placeholder-color);
+}
+
+.typing-content span {
+
+    width: 55px;
+    height: 55px;
+    display: flex;
+    border-radius: 4px;
+    font-size: 1.35rem;
+    align-items: center;
+    justify-content: center;
+    color: var(--icon-color);
+}
+
+.typing-textarea span {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    visibility: hidden;
+}
+
+.typing-textarea input:valid~span {
+    visibility: visible;
+}
+
+.typing-controls {
+    display: flex;
+
+}
+
+.typing-controls span {
+    margin-left: 7px;
+    font-size: 1.4rem;
+    background: rgba(255, 255, 255,0.2);
+
+}
+
+.typing-controls span:hover {
+    background: rgba(255, 255, 255,0.3);
+
+}
+
+
+/* Reponsive Media Query */
+@media screen and (max-width: 600px) {
+    .default-text h1 {
+        font-size: 2.3rem;
+    }
+
+    :where(.default-text p, textarea, .chat p) {
+        font-size: 0.95rem !important;
+    }
+
+    .chat-container .chat {
+        padding: 20px 10px;
+    }
+
+    .chat-container .chat img {
+        height: 32px;
+        width: 32px;
+    }
+
+    .chat-container .chat p {
+        padding: 0 20px;
+    }
+
+    .chat .chat-content:not(:has(.typing-animation), :has(.error)) span {
+        visibility: visible;
+    }
+
+    .typing-container {
+        padding: 15px 10px;
+    }
+
+    .typing-textarea input {
+        height: 45px;
+        padding: 10px 40px 10px 10px;
+    }
+
+    .typing-content span {
+        height: 45px;
+        width: 45px;
+        margin-left: 5px;
+    }
+
+    span.material-symbols-rounded {
+        font-size: 1.25rem !important;
+    }
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.fadeIn {
+    animation: fadeIn 1s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.slideIn {
+    animation: slideIn 0.5s ease-out;
+}
