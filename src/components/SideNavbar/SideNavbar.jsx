@@ -12,7 +12,7 @@ const SideNavbar = ({ children }) => {
       <div className="sidenavbar-nav">
         
         <div className="sidenavbar-title">
-          <h3>Help+</h3>
+          <h3>Elclassico</h3>
         </div>
 
         <div className="sidenavbar-menu">

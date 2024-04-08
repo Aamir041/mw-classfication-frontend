@@ -1,0 +1,52 @@
+.classify {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, #0f2027, #203a43, #2c5364); 
+}
+
+.classify-form{
+    margin-bottom: 2rem;
+    padding: 0.75rem 1.5rem;
+    border: 2px solid white;
+    border-radius: 100px;
+    cursor: pointer;
+}
+
+
+#classify-file-input{
+    display: none;
+}
+
+.classify-file-input-lable{
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.6rem;
+    cursor: pointer;
+
+}
+
+.material-symbols-outlined{
+    font-size: 2.5rem;
+    
+}
+
+.classify-upload{
+     display: flex;
+     gap: 1rem;
+     padding: 0.75rem 1rem;
+     border: 2px solid white;
+     border-radius: 10px;
+     justify-content: center;
+     align-items: center;
+     cursor: pointer;
+}
+
+.upload-icon{
+    font-size: 2rem;
+}

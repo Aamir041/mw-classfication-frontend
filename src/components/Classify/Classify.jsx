@@ -1,6 +1,8 @@
+import "./Classify.css";
 import axios from "axios";
 import { useState } from "react";
 import SideNavbar from "../SideNavbar/SideNavbar";
+
 const backendUrl = "http://localhost:8080/classify/image";
 
 const Classify = () => {
@@ -20,16 +22,28 @@ const Classify = () => {
 
   return (
     <SideNavbar>
-      <div className="napp">
-        <input
-          type="file"
-          name=""
-          id=""
-          onChange={(event) => setImage(event)}
-        />
-        <button type="submit" onClick={uploadImage}>
-          Submit
-        </button>
+      <div className="classify">
+        <div className="classify-form">
+          <input
+            type="file"
+            name=""
+            id="classify-file-input"
+            onChange={(event) => setImage(event)}
+          />
+          <label
+            htmlFor="classify-file-input"
+            className="classify-file-input-lable"
+          >
+            <span class="material-symbols-outlined">add_photo_alternate</span>
+            Click here to upload image
+          </label>
+        </div>
+
+        <div className="classify-upload" onClick={uploadImage}>
+          <span class="material-symbols-outlined upload-icon">upload</span>
+            Upload
+        </div>
+
       </div>
     </SideNavbar>
   );

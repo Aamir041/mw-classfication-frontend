@@ -3,33 +3,45 @@
     flex-direction:row;
     width: 100vw;
     height: 100vh;
+    padding: 0.5rem 0.75rem;
+    column-gap: 0.5rem;
 }
 
 .sidenavbar-children{
     width: 85%;
+    border: 1px solid gray;
+    background: linear-gradient(to right, #0f2027, #203a43, #2c5364); 
+    
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .sidenavbar-nav{
     width: 15%;
-    border-right: 1px solid gray;
     display: flex;
     flex-direction: column;
     align-items: center;
+    
 }
 
 .sidenavbar-title{
     width: 100%;
-    border-bottom: solid 1px white;
+    /* border-bottom: solid 1px gray; */
+    border-radius: 10px;
     padding:0.5rem 1rem ;
+    display: flex;
+    justify-content: center;
+    background-color:    #183D3D;
 }
 
 .sidenavbar-title h3{
-    width: 100%;
-    border: 1px solid;
-    padding: 0.25rem 5rem;
-    border-radius: 8px;
+    /* width: 100%; */
+    /* border: 1px solid gray; */
+    padding: 0.25rem 3rem;
+    /* border-radius: 8px; */
     font-style: italic;
-    text-align: center;
+    /* background-color: red; */
+    
 }
 
 .sidenavbar-menu{
@@ -38,13 +50,20 @@
     width: 100%;
     padding: 0.25rem 0.5rem ;
     margin-top: 1rem;
+    
 }
 
 .sidenavbar-menu a{
     all:unset;
     padding: 0.25rem 0.5rem;
     margin-bottom: 1rem;
-    border: 1px solid white;
+    border: 1px solid gray;
     border-radius: 5px;
     cursor: pointer;
+    text-align: center;
+}
+
+.sidenavbar-menu a:hover{
+    background-color: #5C8374;
+    border: 1px solid #5C8374;
 }
