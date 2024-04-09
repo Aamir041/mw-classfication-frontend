@@ -1,4 +1,4 @@
-import Classify from "./components/Classify/Classify.jsx";
+import Classify from "./pages/Classify/Classify.jsx";
 import GeminiApp from "./pages/GeminiApp/GeminiApp.jsx";
 import LoginForm from "./pages/LoginForm/LoginForm.jsx";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
