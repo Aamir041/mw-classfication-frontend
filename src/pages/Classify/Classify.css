@@ -12,6 +12,7 @@
     margin-bottom: 2rem;
     padding: 0.75rem 1.5rem;
     border: 2px solid white;
+    border-style:dashed;
     border-radius: 100px;
     cursor: pointer;
 }
@@ -51,4 +52,15 @@
 
 .upload-icon{
     font-size: 2rem;
+}
+
+.classify-loading-result{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    background-color: rgba(0, 0, 0,0.8);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

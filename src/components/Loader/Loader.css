@@ -1,5 +1,4 @@
 .loader_cont {
-    background: #dad7dc;
     border-radius: 8px;
     text-align: center;
     margin: 1rem auto;
@@ -10,7 +9,7 @@
   }
   
   .loader {
-    border: 5px solid grey;
+    border: 5px solid rgba(255, 255, 255, 0.444);
     border-top: 5px solid black;
     border-radius: 50%;
     animation: ani 1500ms 1s 100 linear forwards;

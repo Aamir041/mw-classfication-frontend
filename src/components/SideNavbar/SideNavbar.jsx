@@ -4,7 +4,7 @@ import "./SideNavbar.css";
 const SideNavbar = ({ children }) => {
   const menuItems = [
     { name: "App", route: "/gemini-app" },
-    { name: "Classify Image", route: "/classify-image" },
+    { name: "Classify Image", route: "/" },
   ];
 
   return (
@@ -16,8 +16,8 @@ const SideNavbar = ({ children }) => {
         </div>
 
         <div className="sidenavbar-menu">
-          {menuItems.map((ele) => {
-            return <Link to={ele.route}>{ele.name}</Link>;
+          {menuItems.map((ele,idx) => {
+            return <Link key={`menu-items-${idx}`} to={ele.route}>{ele.name}</Link>
           })}
         </div>
 

@@ -135,14 +135,19 @@ span.material-symbols-rounded {
 
 .typing-controls span {
     margin-left: 7px;
-    font-size: 1.4rem;
-    background: rgba(255, 255, 255,0.2);
+    font-size: 1.7rem;
+    /* background: rgba(255, 255, 255,0.2); */
+    color: white;
+    background-color: rgba(0, 0, 0, 0.3);
+   transition: background-color 1s, color 1s;
+   font-weight: bold;
 
 }
 
 .typing-controls span:hover {
-    background: rgba(255, 255, 255,0.3);
-
+   background-color: white;
+   color: black;
+   transition: background-color 1s, color 1s;
 }
 
 
