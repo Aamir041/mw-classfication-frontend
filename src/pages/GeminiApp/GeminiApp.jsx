@@ -112,7 +112,6 @@ const GeminiApp = () => {
                   <input
                     id="chat-input"
                     placeholder="Enter a prompt here"
-                    autoComplete="off"
                     onChange={(e) => setQuestion(e.target.value)}
                   />
                 </form>

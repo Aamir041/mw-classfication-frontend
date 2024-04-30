@@ -23,7 +23,7 @@
     padding: 1rem 0rem;
 }
 .chat-container {
-    border-radius: 5px;
+    border-radius: 8px;
     overflow-y: scroll;
     height: 90%;
     width: 96%;
@@ -32,7 +32,7 @@
     /* background-color: red; */
     /* background: rgba(255, 255, 255,0.1); */
     border: solid 1px white;
-    padding: 2rem;
+    padding: 2rem 5rem;
 
 }
 

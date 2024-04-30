@@ -11,7 +11,9 @@
     width: 85%;
     border: 2px solid gray;
     background: linear-gradient(to right, #0f2027, #203a43, #23495a);
- 
+    background: #201925;
+
+    
     border-radius: 10px;
     overflow: hidden;
 }
@@ -31,7 +33,7 @@
     padding:0.5rem 1rem ;
     display: flex;
     justify-content: center;
-    background-color:    #183D3D;
+    background-color:    #201925;
 }
 
 .sidenavbar-title h3{
@@ -57,16 +59,16 @@
     all:unset;
     padding: 0.25rem 0.5rem;
     margin-bottom: 1rem;
-    border: 2px solid gray;
+    border: 2px solid rgba(255, 255, 255, 0);
     border-radius: 5px;
     cursor: pointer;
     text-align: center;
 }
 
 .sidenavbar-menu a:hover{
-    background-color: #5C8374;
+    /* background-color: #00C9AF; */
     /* border: 1px solid #5C8374; */
-    background: linear-gradient(to left, #141e30, #243b55);
+    /* background: linear-gradient(to left, #141e30, #243b55); */
     border: 2px solid rgba(255, 255, 255, 0);
-
 }
+

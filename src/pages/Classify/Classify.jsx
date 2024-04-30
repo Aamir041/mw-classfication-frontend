@@ -101,7 +101,7 @@ const Classify = () => {
               ? (selectedImage.name)
               : (
                 <>
-                  <span class="material-symbols-outlined"> add_photo_alternate</span>
+                  <span className="material-symbols-outlined"> add_photo_alternate</span>
                   {" "} Click here to upload image
                 </>
               )
@@ -110,7 +110,7 @@ const Classify = () => {
         </div>
 
         <div className="classify-upload" onClick={uploadImage}>
-          <span class="material-symbols-outlined upload-icon">upload</span> Classify
+          <span className="material-symbols-outlined upload-icon">upload</span> Classify
         </div>
 
         
@@ -140,7 +140,7 @@ const Classify = () => {
           /* loading result screen */
           loadingRes 
           &&
-          <div class="classify-loading-result">
+          <div className="classify-loading-result">
             <Loader dimension={5} />
             <p>Loading Results</p>
           </div>

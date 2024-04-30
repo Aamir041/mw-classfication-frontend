@@ -3,22 +3,40 @@
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 10%;
+    justify-content:space-between;
+    gap: 5%;
+    padding: 1rem ;
 }
 
 .image-res-img{
-    width: 30%;
+    width: 50%;
+    text-align: center;
 }
 
 .image-res-img img{
-    width: 100%;
-    border-radius: 25px;
+    width: 85%;
 }
 .image-res-items{
+    width: 50%;
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
+    justify-content:baseline;
+    height: 75%;
+    overflow-y:scroll;
+}
+
+:where(.image-res-items, div)::-webkit-scrollbar {
+    width: 0px;
+}
+
+:where(.image-res-items, div)::-webkit-scrollbar-track {
+    background: var(--incoming-chat-bg);
+    border-radius: 25px;
+}
+
+:where(.image-res-items, div)::-webkit-scrollbar-thumb {
+    background: var(--icon-color);
+    border-radius: 25px;
 }
 
 .image-res-items h3{
@@ -26,12 +44,32 @@
 }
 
 .images-res-data{
-    display: flex;
-    gap: 2rem;
-    border: 1px solid white;
-    padding: 0.5rem 1rem;
-    font-size: 110%;
+    width: 100%;
     margin-bottom: 1.5%;
+    border: 1px solid white;
     border-radius: 10px;
-    justify-content: space-between;
+    padding: 0.5rem 1rem;
+}
+
+.image-res-data-item{
+    text-align: end;
+    font-size: 120%;
+}
+
+
+.image-res-progress-bar{
+    height: 100%;
+    position: relative;
+}
+
+.image-res-progress-bar-parent{
+    width: 100%;
+    height: 10px;
+    background-color: #E2F0FA;
+    border-radius: 10px;
+}
+.image-res-progress-bar-child{
+    background-color: #4589AB;
+    height: 100%;
+    border-radius: 10px;
 }

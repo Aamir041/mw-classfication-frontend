@@ -1,7 +1,23 @@
 import { Link } from "react-router-dom";
 import "./SideNavbar.css";
+import { useState } from "react";
+
 
 const SideNavbar = ({ children }) => {
+
+  const pathname = window.location.pathname;
+
+  console.log(pathname);
+
+  const [isHover, setIsHover] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHover(true);
+  }
+  const handleMouseLeave = () => {
+    setIsHover(false)
+  }
+
   const menuItems = [
     { name: "App", route: "/gemini-app" },
     { name: "Classify Image", route: "/" },
@@ -10,14 +26,24 @@ const SideNavbar = ({ children }) => {
   return (
     <div className="sidenavbar-box">
       <div className="sidenavbar-nav">
-        
+
         <div className="sidenavbar-title">
           <h3>Elclassico</h3>
         </div>
 
         <div className="sidenavbar-menu">
-          {menuItems.map((ele,idx) => {
-            return <Link key={`menu-items-${idx}`} to={ele.route}>{ele.name}</Link>
+          {menuItems.map((ele, idx) => {
+            return (
+              <Link
+                key={`menu-items-${idx}`}
+                to={ele.route}
+                style={{
+                  backgroundColor: `${ (pathname == ele.route) ? "#00C9AF" : "#201925"}`,
+                }}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}>
+                {ele.name}
+              </Link>)
           })}
         </div>
 
@@ -27,5 +53,8 @@ const SideNavbar = ({ children }) => {
     </div>
   );
 };
+
+// backgroundColor: `${ (pathname == ele.route) ? "#00C9AF" : "#201925"}`,
+
 
 export default SideNavbar;

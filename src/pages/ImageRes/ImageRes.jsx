@@ -25,8 +25,18 @@ const ImageRes = () => {
                         imageResults?.map(ele => {
                             return (
                                 <div className="images-res-data">
-                                    <div> <span style={{color:"#ECB159"}}>Item</span>  : {ele.item}</div>
-                                    <div> <span style={{color:"#C68484"}}>Possibility</span>  : {ele.prob}</div>
+                                    {/* <div> <span style={{color:"#ECB159"}}>Item</span>  : {ele.item}</div> */}
+                                    {/* <div> <span style={{color:"#C68484"}}>Possibility</span>  : {ele.prob}</div> */}
+                                    <div className="image-res-data-item" >
+                                        {ele.item}
+                                    </div>
+                                    <div className="image-res-progress-bar">
+                                        <span>{ele.prob*100}%</span>
+                                        <div className="image-res-progress-bar-parent">
+                                            <div className="image-res-progress-bar-child" style={{ width: `${ele.prob * 100}%` }}>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             )
                         })
