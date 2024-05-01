@@ -19,7 +19,6 @@ const GeminiApp = () => {
   const MODEL_NAME = "gemini-1.0-pro";
   const API_KEY = "AIzaSyDjPCJ-6gib3fD50eB2tFocB-GyVCeioG8";
 
-  const fileInputRef = useRef(null);
 
   const getResponse = async () => {
     setLoading(true);

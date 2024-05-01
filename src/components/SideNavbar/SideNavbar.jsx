@@ -7,8 +7,6 @@ const SideNavbar = ({ children }) => {
 
   const pathname = window.location.pathname;
 
-  console.log(pathname);
-
   const [isHover, setIsHover] = useState(false);
 
   const handleMouseEnter = () => {
@@ -28,7 +26,7 @@ const SideNavbar = ({ children }) => {
       <div className="sidenavbar-nav">
 
         <div className="sidenavbar-title">
-          <h3>Elclassico.</h3>
+          <h1>Elclassico.</h1>
         </div>
 
         <div className="sidenavbar-menu">

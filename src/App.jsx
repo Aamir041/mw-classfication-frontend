@@ -1,3 +1,4 @@
+import WebCamComponent from "./components/WebCamComponent/WebCamComponent.jsx";
 import Classify from "./pages/Classify/Classify.jsx";
 import GeminiApp from "./pages/GeminiApp/GeminiApp.jsx";
 import ImageRes from "./pages/ImageRes/ImageRes.jsx";

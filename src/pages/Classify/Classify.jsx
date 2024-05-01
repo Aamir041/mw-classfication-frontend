@@ -19,8 +19,6 @@ const Classify = () => {
 
   const setImage = (event) => {
     setSelectedImage(null);
-    console.log(event?.target?.files[0]);
-
     if (
       event?.target?.files[0].type !== "image/webp" &&
       event?.target?.files[0].type !== "image/png" &&
