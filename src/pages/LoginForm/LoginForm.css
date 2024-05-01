@@ -1,4 +1,3 @@
-
 .login-form-background {
     width: 430px;
     height: 520px;
@@ -16,15 +15,13 @@
 }
 
 .login-form-background-shape:first-child {
-    background: linear-gradient(#1845ad,
-            #23a2f6);
+    background: linear-gradient(#00C9AF,#C5FCEF);
     left: -80px;
     top: -80px;
 }
 
 .login-form-background-shape:last-child {
-    background: linear-gradient(to right,
-            #ff512f,
+    background: linear-gradient(#ff512f,
             #f09819);
     right: -30px;
     bottom: -80px;

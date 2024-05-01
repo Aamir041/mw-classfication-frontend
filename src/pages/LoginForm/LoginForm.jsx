@@ -1,8 +1,66 @@
+import { useState } from "react";
 import "./LoginForm.css";
+import { makeUnAuthenticatedPOSTRequest } from "../../utils/helper";
+import Notification from "../../components/Notification/Notification";
+import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router";
 const LoginForm = () => {
+
+  const [username, setUsername] = useState();
+  const [password, setPassword] = useState();
+  const [error, setError] = useState(null);
+  const [cookie,setCookie] = useCookies(["token"]);
+  const navigate = useNavigate();
+
+  const login = async () => {
+    
+    const credentials = validateUsernameAndPassword(username,password);
+    
+    if(!credentials) return;
+
+    const response = await makeUnAuthenticatedPOSTRequest("/users/login",credentials);
+    console.log(response);
+    if(response?.status >= 400 ){
+      setError(response.message);
+      showError();
+      return;
+    }
+    else{
+      const token = response?.token;
+      const date = new Date();
+      date.setDate(date.getDate()+30);
+      setCookie("token",token,{ path: "/", expires: date});
+      navigate("/");
+    }
+
+  }
+
+  const validateUsernameAndPassword = (username, password) => {
+    username = username.replace(/\s/g, '');
+    password = password.replace(/\s/g, '');
+
+    if(username == null || username?.length == 0 ){
+      setError("Enter username");
+      showError();
+      return null;
+    }
+    if(password == null || password?.length == 0){
+      setError("Enter password");
+      showError();
+      return null;
+    }
+    return {username,password};
+  }
+
+  const showError = () => {
+    setTimeout(() => {
+      setError(null);
+    }, 2000);
+  }
+
   return (
     <div className="login-form">
-      
+
       <div className="login-form-background">
         <div className="login-form-background-shape"></div>
         <div className="login-form-background-shape"></div>
@@ -10,15 +68,19 @@ const LoginForm = () => {
 
       <div className="login-form-form">
         <h3>Login</h3>
-        
-        <label for="username">Username</label>
-        <input type="text" placeholder="Email or Phone" id="username"/>
 
-            <label for="password">Password</label>
-            <input type="password" placeholder="Password" id="password"/>
+        <label htmlFor="username">Username</label>
+        <input type="text" placeholder="Username" autoComplete="off" id="username" onChange={(e) => {setUsername(e.target.value)}} />
 
-            <button>Log In</button>
+        <label htmlFor="password">Password</label>
+        <input type="password" placeholder="Password" id="password" onChange={(e) => {setPassword(e.target.value)}}/>
+
+        <button onClick={login}>Log In</button>
       </div>
+
+      {
+        error && <Notification msg={error} errorColor={"red"}/>
+      }
 
     </div>
   );

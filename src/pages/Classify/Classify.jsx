@@ -61,7 +61,7 @@ const Classify = () => {
           setLoadingRes(false)
           
           console.log("redirecting to results page");
-
+          
           navigate("/image-res",
             {
               state:
