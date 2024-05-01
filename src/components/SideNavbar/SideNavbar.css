@@ -9,11 +9,9 @@
 
 .sidenavbar-children{
     width: 85%;
-    border: 2px solid gray;
-    background: linear-gradient(to right, #0f2027, #203a43, #23495a);
+    /* background: linear-gradient(to right, #0f2027, #203a43, #23495a); */
     background: #201925;
-
-    
+    background: #1e293b;
     border-radius: 10px;
     overflow: hidden;
 }
@@ -33,7 +31,6 @@
     padding:0.5rem 1rem ;
     display: flex;
     justify-content: center;
-    background-color:    #201925;
 }
 
 .sidenavbar-title h3{

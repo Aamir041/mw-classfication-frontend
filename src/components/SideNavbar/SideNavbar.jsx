@@ -28,7 +28,7 @@ const SideNavbar = ({ children }) => {
       <div className="sidenavbar-nav">
 
         <div className="sidenavbar-title">
-          <h3>Elclassico</h3>
+          <h3>Elclassico.</h3>
         </div>
 
         <div className="sidenavbar-menu">
@@ -38,7 +38,7 @@ const SideNavbar = ({ children }) => {
                 key={`menu-items-${idx}`}
                 to={ele.route}
                 style={{
-                  backgroundColor: `${ (pathname == ele.route) ? "#00C9AF" : "#201925"}`,
+                  backgroundColor: `${ (pathname == ele.route) ? "#00C9AF" : "#1e293b"}`,
                 }}
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}>
