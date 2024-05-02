@@ -77,7 +77,7 @@ const GeminiApp = () => {
       });
 
       const result = await chat.sendMessage(questions);
-      console.log(result.response);
+      // console.log(result.response);
       setResponse(result.response?.candidates[0]?.content?.parts[0]?.text);
     } catch (error) {
       console.error("Error:", error.message);

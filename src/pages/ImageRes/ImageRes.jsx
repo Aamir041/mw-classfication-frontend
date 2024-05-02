@@ -30,9 +30,9 @@ const ImageRes = () => {
                 <div className="image-res-items">
                     <h3>Results</h3>
                     {
-                        imageResults?.map(ele => {
+                        imageResults?.map((ele,idx) => {
                             return (
-                                <div className="images-res-data">
+                                <div className="images-res-data" key={`images-res-items-${idx}`}>
                                     <div className="image-res-data-item" >
                                         {ele?.item}
                                     </div>

@@ -5,6 +5,7 @@ import SideNavbar from "../../components/SideNavbar/SideNavbar";
 import Notification from "../../components/Notification/Notification";
 import Loader from "../../components/Loader/Loader";
 import { useNavigate } from "react-router";
+import { useCookies } from "react-cookie";
 
 const backendUrl = "http://localhost:8080/classify/image";
 
@@ -14,6 +15,8 @@ const Classify = () => {
   const [cantUpload, setCantUpload] = useState(false);
   const [backendError, setBackendError] = useState(false);
   const [loadingRes,setLoadingRes] = useState(false);
+  const [cookie, setCookie] = useCookies(['token']);
+
   const navigate =useNavigate();
 
 
@@ -50,17 +53,21 @@ const Classify = () => {
       setLoadingRes(true)
       try {
         
+        // sets header for axios that has jwt token in Authorization header
+        const config = {
+          headers: {
+            'Authorization': `Bearer ${cookie.token}`,
+          }
+        };
+
         const formData = new FormData();
         formData.append("file", selectedImage);
-        const sendImageResponse = await axios.post(backendUrl, formData);
         
-        // console.log(sendImageResponse.data);
-        
+        const sendImageResponse = await axios.post(backendUrl,formData,config);
+
         if (sendImageResponse.status == 200) {
           
           setLoadingRes(false)
-          
-          console.log("redirecting to results page");
           
           navigate("/image-res",
             {
