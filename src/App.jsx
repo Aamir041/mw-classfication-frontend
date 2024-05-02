@@ -12,7 +12,7 @@ function App() {
       {cookie?.token
         ? (
           <Routes>
-            <Route path="/gemini-app" element={<GeminiApp />} />
+            <Route path="/chatai" element={<GeminiApp />} />
             <Route path="/image-res" element={<ImageRes />} />
             <Route path="/" element={<Classify />} />
             <Route path="*" element={<Navigate to="/" />} />
