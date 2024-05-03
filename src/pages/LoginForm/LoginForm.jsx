@@ -73,10 +73,10 @@ const LoginForm = () => {
           <h3>Login</h3>
 
           <label htmlFor="username">Username</label>
-          <input type="text" placeholder="Username" autoComplete="off" id="username" onChange={(e) => { setUsername(e.target.value) }} />
+          <input type="text" placeholder="Enter Username" autoComplete="off" id="username" onChange={(e) => { setUsername(e.target.value) }} />
 
           <label htmlFor="password">Password</label>
-          <input type="password" placeholder="Password" id="password" onChange={(e) => { setPassword(e.target.value) }} />
+          <input type="password" placeholder="Enter Password" id="password" onChange={(e) => { setPassword(e.target.value) }} />
 
           <button onClick={login}>Log In</button>
         </div>

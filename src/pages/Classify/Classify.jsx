@@ -11,11 +11,9 @@ const backendUrl = "http://localhost:8080/classify/image";
 
 const Classify = () => {
   const [selectedImage, setSelectedImage] = useState(null);
-  const [notImageFile, setNotImageFile] = useState(false);
-  const [cantUpload, setCantUpload] = useState(false);
-  const [backendError, setBackendError] = useState(false);
   const [loadingRes,setLoadingRes] = useState(false);
   const [cookie, setCookie] = useCookies(['token']);
+  const [error,setError] = useState(null);
 
   const navigate =useNavigate();
 
@@ -28,25 +26,17 @@ const Classify = () => {
       event?.target?.files[0].type !== "image/jpeg" &&
       event?.target?.files[0].type !== "image/svg+xml"
     ) {
-      console.log("This is not desired file.");
       setSelectedImage(null);
-      setNotImageFile(true);
-      setTimeout(() => {
-        setNotImageFile(false);
-      }, 3000);
+      showError("Not an Image File");
     } else {
       setSelectedImage(event?.target?.files[0]);
-      setNotImageFile(false);
     }
   };
 
   const uploadImage = async () => {
 
     if (!selectedImage) {
-      setCantUpload(true);
-      setTimeout(() => {
-        setCantUpload(false);
-      }, 3000);
+      showError("Please select a file to classify");
       return ;
     }
     else {
@@ -66,36 +56,29 @@ const Classify = () => {
         const sendImageResponse = await axios.post(backendUrl,formData,config);
 
         if (sendImageResponse.status == 200) {
-          
           setLoadingRes(false)
-          
-          navigate("/image-res",
-            {
-              state:
-              {
-                image: selectedImage,
-                imageResults: sendImageResponse?.data
-              }
-            }
-          );
-
+          navigate("/image-res",{state:{image: selectedImage,imageResults: sendImageResponse?.data}});
         }
+
       } 
       catch (err) {
         setLoadingRes(false)
-        setBackendError(true);
-        setTimeout(() => {
-          setBackendError(false);
-        }, 3000);
+        showError("Error occured from backend");
       }
     }
   };
+
+  const showError = (message) => {
+    setError(message);
+    setTimeout(() => {
+      setError(null);
+    }, 3500);
+  }
 
   return (
     <SideNavbar>
 
       <div className="classify">
-
         <div className="classify-form">
 
           <input type="file" id="classify-file-input" onChange={(event) => setImage(event)}/>
@@ -112,37 +95,22 @@ const Classify = () => {
               )
             }
           </label>
+
         </div>
 
         <div className="classify-upload" onClick={uploadImage}>
           <span className="material-symbols-outlined upload-icon">upload</span> Classify
         </div>
 
-        
         {
-          /* Not an image notification */
-          notImageFile 
+          /** Show error notification */
+          error
           &&
-          <Notification msg="Not an Image File" errorColor="red" />
-        }
-
-        
-        {
-          /* Image not selected notification*/
-          cantUpload
-          &&
-          <Notification msg="Please select a file to classify" errorColor="red" />
-        }
-
-        {
-          /* backend error notification */
-          backendError
-          &&
-          <Notification msg="Error occured from backend" errorColor="red" />
+          <Notification msg={error} errorColor="red" /> 
         }
         
         {
-          /* loading result screen */
+          /** Loading result screen */
           loadingRes 
           &&
           <div className="classify-loading-result">
