@@ -4,6 +4,7 @@ import { makeUnAuthenticatedPOSTRequest } from "../../utils/helper";
 import Notification from "../../components/Notification/Notification";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 const LoginForm = () => {
 
   const [username, setUsername] = useState();
@@ -21,7 +22,7 @@ const LoginForm = () => {
     try {
       const response = await makeUnAuthenticatedPOSTRequest("/users/login", credentials);
       if (response?.status >= 400) {
-        showError(response.message);
+        showError(response?.message);
         return;
       }
       else {
@@ -79,6 +80,9 @@ const LoginForm = () => {
           <input type="password" placeholder="Enter Password" id="password" onChange={(e) => { setPassword(e.target.value) }} />
 
           <button onClick={login}>Log In</button>
+          <div>
+            <div>Don't have an account ? <Link to={"/signup"}>Sign Up</Link> </div>
+          </div>
         </div>
       </form>
 

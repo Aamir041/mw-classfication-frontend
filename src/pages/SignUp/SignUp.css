@@ -1,4 +1,4 @@
-.login-form-background {
+.signup-form-background {
     width: 430px;
     height: 520px;
     position: absolute;
@@ -7,28 +7,28 @@
     top: 50%;
 }
 
-.login-form-background-shape {
+.signup-form-background-shape {
     height: 200px;
     width: 200px;
     position: absolute;
     border-radius: 50%;
 }
 
-.login-form-background-shape:first-child {
+.signup-form-background-shape:first-child {
     background: linear-gradient(#00C9AF,#1a3730);
     left: -80px;
     top: -80px;
 }
 
-.login-form-background-shape:last-child {
+.signup-form-background-shape:last-child {
     background: linear-gradient(#ff512f,
-            #5d3a0a);
+            #f09819);
     right: -30px;
     bottom: -80px;
 }
 
-.login-form-form {
-    height: 520px;
+.signup-form-form {
+    height: max-content;
     width: 400px;
     background-color: rgba(255, 255, 255, 0.13);
     position: absolute;
@@ -42,7 +42,7 @@
     padding: 50px 35px;
 }
 
-.login-form-form * {
+.signup-form-form * {
     font-family: 'Poppins', sans-serif;
     color: #ffffff;
     letter-spacing: 0.5px;
@@ -50,21 +50,21 @@
     border: none;
 }
 
-.login-form-form h3 {
+.signup-form-form h3 {
     font-size: 32px;
     font-weight: 500;
     line-height: 42px;
     text-align: center;
 }
 
-.login-form-form label {
+.signup-form-form label {
     display: block;
     margin-top: 30px;
     font-size: 16px;
     font-weight: 500;
 }
 
-.login-form-form input {
+.signup-form-form input {
     display: block;
     height: 50px;
     width: 100%;
@@ -80,15 +80,15 @@
     color: #e5e5e5;
 }
 
-.login-form-form button {
+.signup-form-form button {
     margin-top: 50px;
     width: 100%;
     background-color: #ffffff;
     color: #080710;
     padding: 15px 0;
+    margin-bottom: 1rem;
     font-size: 18px;
     font-weight: 600;
     border-radius: 5px;
     cursor: pointer;
-    margin-bottom: 1rem;
 }
