@@ -22,7 +22,7 @@
 
 .signup-form-background-shape:last-child {
     background: linear-gradient(#ff512f,
-            #f09819);
+            #5d3a0a);
     right: -30px;
     bottom: -80px;
 }
@@ -81,7 +81,7 @@
 }
 
 .signup-form-form button {
-    margin-top: 50px;
+    margin-top: 1.875rem;
     width: 100%;
     background-color: #ffffff;
     color: #080710;
