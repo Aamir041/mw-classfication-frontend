@@ -12,6 +12,7 @@ const SideNavbar = ({ children }) => {
   ];
 
   const[cookie,setCookie,removeCookie] = useCookies(['token'])
+  const [displayLogoutText, setDisplayLogoutText] = useState(false)
 
 
   const logout = () => {
@@ -46,12 +47,17 @@ const SideNavbar = ({ children }) => {
         </div>
 
         <div className="logout-bttn" onClick={logout}>
-          <span
-            className="material-symbols-outlined"
-            style={{ transform: "rotate(180deg)", fontSize:"2rem" }}
-          >
-            logout
-          </span>
+          <div className="logout-bttn-symbol" onMouseEnter={() => setDisplayLogoutText(true)} onMouseLeave={() => setDisplayLogoutText(false)}>
+            <span className="material-symbols-outlined" style={{ transform: "rotate(180deg)", fontSize: "2rem" }}>
+              logout
+            </span>
+          </div>
+
+          <div className="logout-bttn-label">
+            <div className="logout-bttn-label-text" style={{display:`${displayLogoutText ? "block" : "none"}`}}>
+            Logout
+            </div>
+          </div>
         </div>
 
       </div>

@@ -64,31 +64,44 @@
     text-align: center;
 }
 
-.sidenavbar-menu a:hover{
-    /* background-color: #00C9AF; */
-    /* border: 1px solid #5C8374; */
-    /* background: linear-gradient(to left, #141e30, #243b55); */
-    border: 2px solid rgba(255, 255, 255, 0);
-}
-
 .logout-bttn{
-    padding: 2% 5%;
-    margin-bottom: 17%;
-    font-size: 1.25rem;
-    cursor: pointer;
-    border-radius: 10px;
-    transition: background-color 0.5s ease-out, color 0.3s ease;
+    width: 100%;
+    height: 20%;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
-    background-color: #1e293b;
-    color: #00C9AF;
+    position: relative;
 }
 
-.logout-bttn:hover{
+.logout-bttn-symbol{
+    padding: 5%;
+    background-color: #1e293b;
+    color: #00C9AF;
+    transition: background-color 0.5s ease-out, color 0.3s ease;
+    cursor: pointer;
+    border-radius: 10px;
+    display: flex;
+
+}
+
+.logout-bttn-symbol:hover{
     background-color: #00C9AF;
     color: white;
     border-radius: 10px;
     transition: background-color 0.5s ease-in, color 0.3s ease;
+}
+
+.logout-bttn-label{
+    position:absolute;
+    top: 0;
+    right: 0;
+    padding-top: 1rem;
+    padding-right: 0.9rem;
+}
+
+.logout-bttn-label-text{
+    background-color: #1e293b;
+    color: #00C9AF;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
 }

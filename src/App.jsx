@@ -4,6 +4,7 @@ import GeminiApp from "./pages/GeminiApp/GeminiApp.jsx";
 import ImageRes from "./pages/ImageRes/ImageRes.jsx";
 import LoginForm from "./pages/LoginForm/LoginForm.jsx";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import SignUp from "./pages/SignUp/SignUp.jsx";
 
 function App() {
   const [cookie, setCookie] = useCookies(['token']);
@@ -21,6 +22,7 @@ function App() {
         : (
           <Routes>
             <Route path="/login" element={<LoginForm />} />
+            <Route path="/signup" element={<SignUp />} />
             <Route path="*" element={<Navigate to="/login" />} />
           </Routes>
         )
