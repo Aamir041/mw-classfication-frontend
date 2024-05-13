@@ -1,0 +1,21 @@
+.report-component{
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+}
+
+.report-button-container{
+    margin: 0 2rem 0 auto;
+    padding: 1rem 0rem;
+}
+
+.report-button{
+    all: unset;
+    color: white;
+    padding: 0.5rem 1rem;
+    background-color: #020818;
+    border-radius: 15px;
+    cursor: pointer;
+}

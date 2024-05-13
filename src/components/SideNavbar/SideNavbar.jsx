@@ -9,6 +9,8 @@ const SideNavbar = ({ children }) => {
   const menuItems = [
     { name: "Classify Image", route: "/" },
     { name: "Chat AI", route: "/chatai" },
+    { name: "Report", route: "/report" },
+
   ];
 
   const[cookie,setCookie,removeCookie] = useCookies(['token'])

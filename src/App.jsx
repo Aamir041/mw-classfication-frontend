@@ -5,6 +5,7 @@ import ImageRes from "./pages/ImageRes/ImageRes.jsx";
 import LoginForm from "./pages/LoginForm/LoginForm.jsx";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import SignUp from "./pages/SignUp/SignUp.jsx";
+import Report from "./pages/Report/Report.jsx";
 
 function App() {
   const [cookie, setCookie] = useCookies(['token']);
@@ -17,6 +18,7 @@ function App() {
             <Route path="/image-res" element={<ImageRes />} />
             <Route path="/" element={<Classify />} />
             <Route path="*" element={<Navigate to="/" />} />
+            <Route path="/report" element={<Report/>}/>
           </Routes>
         )
         : (
